@@ -19,15 +19,18 @@ use App\Models\Brand;
 
 /* Frontend Routes */
 
-Route::get('/', [HomeController::class,'home'])->name('homeroute');
+
+Route::get('/', [HomeController::class,'home'])->name( 'homeroute' );
+Route::get('/{slug}', [HomeController::class,'show'])->name('home.show');
+
 
 Route::post('/login',[AuthController::class,'login'])->name('login');
 
 Route::prefix('/shop')->group(function () {
-    Route::get('/shop-grid',[ProductFilterController::class,'filter'])->name('shop-grid');;
+    Route::get('/shop-grid',[ProductFilterController::class,'filter'])->name('shop-grid');
     
     Route::get('/cart',function(){
-        return view('shop/cart');
+        return view('shop/cart' );
     });
     Route::get('/checkout',function(){
         return view('shop/checkout'); //checkout.blade.php
@@ -71,9 +74,7 @@ Route::prefix('/shop')->group(function () {
     Route::get('/shop-grid-extended',function(){
         return view('shop/shop-grid-extended'); //shop-grid-extended.blade.php
     }); 
-    Route::get('/shop-grid',function(){
-        return view('shop/shop-grid'); //shop-grid.blade.php
-    }); 
+     
     Route::get('/shop-left-sidebar',function(){
         return view('shop/shop-left-sidebar'); //shop-left-sidebar.blade.php
     }); 
@@ -89,6 +90,9 @@ Route::prefix('/shop')->group(function () {
     Route::get('/shop',function(){
         return view('shop/shop'); //shop.blade.php
     }); 
+    Route::get('/contact-v1', function () {
+        return view('shop/contact-v1'); 
+    });
     Route::get('/single-product-extended',function(){
         return view('shop/single-product-extended'); //single-product-extended.blade.php
     }); 
@@ -116,6 +120,7 @@ Route::get('/store-directory', function () {
 Route::get('/terms-and-conditions', function () {
     return view('terms-and-conditions'); //terms-and-conditions.blade.php
 });
+
 
 
 

@@ -33,19 +33,19 @@
                         data-arrow-right-classes="fas fa-arrow-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-2 mr-xl-4"
                         data-nav-for="#sliderSyncingThumb">
                         <div class="js-slide">
-                            <img class="img-fluid" src="/assets/img/720X660/img1.jpg" alt="Image Description">
+                            <img class="img-fluid" src="/assets/img/720X660/laptop1.jpg" alt="Image Description">
                         </div>
                         <div class="js-slide">
-                            <img class="img-fluid" src="/assets/img/720X660/img2.jpg" alt="Image Description">
+                            <img class="img-fluid" src="/assets/img/720X660/laptop2.jpg" alt="Image Description">
                         </div>
                         <div class="js-slide">
-                            <img class="img-fluid" src="/assets/img/720X660/img3.jpg" alt="Image Description">
+                            <img class="img-fluid" src="/assets/img/720X660/laptop3.jpg" alt="Image Description">
                         </div>
                         <div class="js-slide">
-                            <img class="img-fluid" src="/assets/img/720X660/img4.jpg" alt="Image Description">
+                            <img class="img-fluid" src="/assets/img/720X660/laptop4.jpg" alt="Image Description">
                         </div>
                         <div class="js-slide">
-                            <img class="img-fluid" src="/assets/img/720X660/img5.jpg" alt="Image Description">
+                            <img class="img-fluid" src="/assets/img/720X660/laptop5.jpg" alt="Image Description">
                         </div>
                     </div>
 
@@ -55,19 +55,19 @@
                         data-is-thumbs="true"
                         data-nav-for="#sliderSyncingNav">
                         <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="/assets/img/720X660/img1.jpg" alt="Image Description">
+                            <img class="img-fluid" src="/assets/img/720X660/laptop1.jpg" alt="Image Description">
                         </div>
                         <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="/assets/img/720X660/img2.jpg" alt="Image Description">
+                            <img class="img-fluid" src="/assets/img/720X660/laptop2.jpg" alt="Image Description">
                         </div>
                         <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="/assets/img/720X660/img3.jpg" alt="Image Description">
+                            <img class="img-fluid" src="/assets/img/720X660/laptop3.jpg" alt="Image Description">
                         </div>
                         <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="/assets/img/720X660/img4.jpg" alt="Image Description">
+                            <img class="img-fluid" src="/assets/img/720X660/laptop4.jpg" alt="Image Description">
                         </div>
                         <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="/assets/img/720X660/img5.jpg" alt="Image Description">
+                            <img class="img-fluid" src="/assets/img/720X660/laptop5.jpg" alt="Image Description">
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                     <div class="mb-2">
                         <div class="border-bottom mb-3 pb-md-1 pb-3">
                             <a href="#" class="font-size-12 text-gray-5 mb-2 d-inline-block">Headphones</a>
-                            <h2 class="font-size-25 text-lh-1dot2">Ultra Wireless S50 Headphones S50 with Bluetooth</h2>
+                            <h2 class="font-size-25 text-lh-1dot2">{{$product->product_name}}</h2>
                             <div class="mb-2">
                                 <a class="d-inline-flex align-items-center small font-size-15 text-lh-1" href="#">
                                     <div class="text-warning mr-2">
@@ -90,7 +90,7 @@
                             </div>
                             <div class="d-md-flex align-items-center">
                                 <a href="#" class="max-width-150 ml-n2 mb-2 mb-md-0 d-block"><img class="img-fluid" src="/assets/img/200X60/img1.png" alt="Image Description"></a>
-                                <div class="ml-md-3 text-gray-9 font-size-14">Availability: <span class="text-green font-weight-bold">26 in stock</span></div>
+                                <div class="ml-md-3 text-gray-9 font-size-14">Availability: <span class="text-green font-weight-bold">{{$product->qty_available}} in Stock</span></div>
                             </div>
                         </div>
                         <div class="flex-horizontal-center flex-wrap mb-4">
@@ -109,8 +109,8 @@
                         <p><strong>SKU</strong>: FW511948218</p>
                         <div class="mb-4">
                             <div class="d-flex align-items-baseline">
-                                <ins class="font-size-36 text-decoration-none">$1,999.00</ins>
-                                <del class="font-size-20 ml-2 text-gray-6">$2,299.00</del>
+                                <ins class="font-size-36 text-decoration-none"> ₹{{$product->sell_price}}</ins>
+                                <del class="font-size-20 ml-2 text-gray-6">₹{{$product->mrp}}</del>
                             </div>
                         </div>
                         <div class="border-top border-bottom py-3 mb-4">

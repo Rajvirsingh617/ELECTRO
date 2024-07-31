@@ -1,5 +1,3 @@
-
-
 <!-- ========== HEADER ========== -->
 <header id="header" class="u-header u-header-left-aligned-nav">
     <div class="u-header__section">
@@ -80,7 +78,7 @@
                         <!-- Nav -->
                         <nav class="navbar navbar-expand u-header__navbar py-0 justify-content-xl-between max-width-270 min-width-270">
                             <!-- Logo -->
-                            <a class="order-1 order-xl-0 navbar-brand u-header__navbar-brand u-header__navbar-brand-center" href="../home/index" aria-label="Electro">
+                            <a class="order-1 order-xl-0 navbar-brand u-header__navbar-brand u-header__navbar-brand-center" href="/" aria-label="Electro">
                                 <img src="{{$appData['app_logo']}}" />
                             </a>
                             <!-- End Logo -->
@@ -610,7 +608,7 @@
                             <i class="ec ec-support font-size-50 text-primary"></i>
                             <div class="ml-2">
                                 <div class="phone">
-                                    <strong>Support</strong> <a href="tel:{{$appData['support']}}" class="text-gray-90">{{$appData['support']}}</a>
+                                    <strong>Support</strong> <a href="tel:{{$appData['customer_care_no1']}}" class="text-gray-90">{{$appData['customer_care_no1']}}</a>
                                 </div>
                                 <div class="email">
                                     E-mail: <a href="{{$appData['email']}}?subject=Help Need" class="text-gray-90">{{$appData['email']}}</a>
@@ -719,6 +717,7 @@
                                                             <a href="#" class="nav-link u-header__nav-link font-weight-bold">New Arrivals</a>
                                                         </li>
                                                         <!-- Nav Item MegaMenu -->
+                                                      
                                                         <li class="nav-item hs-has-mega-menu u-header__nav-item"
                                                             data-event="hover"
                                                             data-animation-in="slideInUp"
@@ -1048,10 +1047,10 @@
                     <!-- Search bar -->
                     <div class="col align-self-center">
                         <!-- Search-Form -->
-                        <form class="js-focus-state">
+                        <form class="js-focus-state" method="GET" action="/shop/shop-grid">
                             <label class="sr-only" for="searchProduct">Search</label>
                             <div class="input-group">
-                                <input type="email" class="form-control py-2 pl-5 font-size-15 border-0 height-40 rounded-left-pill" name="email" id="searchProduct" placeholder="Search for Products" aria-label="Search for Products" aria-describedby="searchProduct1" required>
+                                <input type="text" class="form-control py-2 pl-5 font-size-15 border-0 height-40 rounded-left-pill" name="q" id="searchProduct" placeholder="Search for Products" aria-label="Search for Products" aria-describedby="searchProduct1" required>
                                 <div class="input-group-append">
                                     <!-- Select -->
                                     <select class="js-select selectpicker dropdown-select custom-search-categories-select"
@@ -1062,7 +1061,7 @@
                                         <option value="four">Four</option>
                                     </select>
                                     <!-- End Select -->
-                                    <button class="btn btn-dark height-40 py-2 px-3 rounded-right-pill" type="button" id="searchProduct1">
+                                    <button type="submit" class="btn btn-dark height-40 py-2 px-3 rounded-right-pill" type="button" id="searchProduct1">
                                         <span class="ec ec-search font-size-24"></span>
                                     </button>
                                 </div>
