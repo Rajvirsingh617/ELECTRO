@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerAuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\SystemInfoController;
 
@@ -22,6 +23,7 @@ use App\Models\Brand;
 
 Route::get('/', [HomeController::class,'home'])->name( 'homeroute' );
 Route::get('/{slug}', [HomeController::class,'show'])->name('home.show');
+Route::get('/chat/chat', [ChatController::class,'chat']);
 
 
 Route::post('/login',[AuthController::class,'login'])->name('login');
@@ -32,6 +34,10 @@ Route::prefix('/shop')->group(function () {
     Route::get('/cart',function(){
         return view('shop/cart' );
     });
+    Route::get('/chatbot',function(){
+        return view('shop/chatbot' );
+    });
+
     Route::get('/checkout',function(){
         return view('shop/checkout'); //checkout.blade.php
     });

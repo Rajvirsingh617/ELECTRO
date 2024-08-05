@@ -594,6 +594,9 @@
                                     <li class="nav-item u-header__nav-item">
                                         <a class="nav-link u-header__nav-link" href="../home/contact-v1">Contact Us</a>
                                     </li>
+                                    <li class="nav-item u-header__nav-item">
+                                        <a class="nav-link u-header__nav-link" href="/chat/chat">Chat With US</a>
+                                    </li>
                                     <!-- End Contact Us -->
                                 </ul>
                             </div>

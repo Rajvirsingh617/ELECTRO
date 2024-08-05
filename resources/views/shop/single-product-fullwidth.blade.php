@@ -13,7 +13,7 @@
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../home/index.html">Home</a></li>
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../shop/shop.html">Accessories</a></li>
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../shop/shop.html">Headphones</a></li>
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Ultra Wireless S50 Headphones S50 with Bluetooth</li>
+                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">{{$product->product_name}}</li>
                     </ol>
                 </nav>
             </div>
@@ -106,7 +106,7 @@
                             </ul>
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-                        <p><strong>SKU</strong>: FW511948218</p>
+                        <p><strong>SKU</strong>: {{$product->sku}}</p>
                         <div class="mb-4">
                             <div class="d-flex align-items-baseline">
                                 <ins class="font-size-36 text-decoration-none"> ₹{{$product->sell_price}}</ins>
@@ -241,7 +241,7 @@
                                 <div class="form-check pl-4 pl-md-0 ml-md-4 mb-2 pb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
                                     <input class="form-check-input" type="checkbox" value="" id="inlineCheckbox1" checked disabled>
                                     <label class="form-check-label mb-1" for="inlineCheckbox1">
-                                        <strong>This product: </strong> Ultra Wireless S50 Headphones S50 with Bluetooth - <span class="text-red font-size-16">$35.00</span>
+                                        <strong>This product: </strong> {{$product->product_name}}- <span class="text-red font-size-16">$35.00</span>
                                     </label>
                                 </div>
                                 <div class="form-check pl-4 pl-md-0 ml-md-4 mb-2 pb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
@@ -298,7 +298,7 @@
                             </div>
                         </div>
                         <ul class="nav flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
-                            <li class="nav-item text-gray-111 flex-shrink-0 flex-xl-shrink-1"><strong>SKU:</strong> <span class="sku">FW511948218</span></li>
+                            <li class="nav-item text-gray-111 flex-shrink-0 flex-xl-shrink-1"><strong>SKU:</strong> <span class="sku">{{$product->sku}}</span></li>
                             <li class="nav-item text-gray-111 mx-3 flex-shrink-0 flex-xl-shrink-1">/</li>
                             <li class="nav-item text-gray-111 flex-shrink-0 flex-xl-shrink-1"><strong>Category:</strong> <a href="#" class="text-blue">Headphones</a></li>
                             <li class="nav-item text-gray-111 mx-3 flex-shrink-0 flex-xl-shrink-1">/</li>

@@ -11,6 +11,11 @@
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="{{$appData['app_shortcut_icon_url']}}">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
 
         <!-- Google Fonts -->
         <link
@@ -30,6 +35,12 @@
 
         <!-- CSS Electro Template -->
         <link rel="stylesheet" href="/assets/css/theme.css">
+        <style>
+            .a_tbdr{
+                border:1px dashed red;
+            }
+            
+            </style>
     </head>
     <body>
 
