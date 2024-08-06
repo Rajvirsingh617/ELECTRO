@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Models\Product;
 
@@ -18,8 +19,28 @@ class HomeController extends Controller
     }
     
         public function show($slug){
-            $product=product::where('slug',$slug)->first();
-            return view('/shop/single-product-fullwidth',['product'=>$product]);
+            $product=product::where('slug',$slug)
+            ->join('categories','products.category_id','=','categories.category_id')
+            ->join('brands','products.brand_id','=','brands.id')
+            ->select('products.*','categories.category_name','brands.brand_name','brands.brand_logo')
+            ->first();
+            //dd($product->id);
+            $customerReviewcount=DB::table('reviews')
+            ->where('product_id',$product->id)
+            ->count();
+            
+            $averagerating = DB::table('reviews')
+            ->where('product_id',$product->id)
+            ->avg('rating');
+            
+            //dd($averagerating);
+
+            return view('/shop/single-product-fullwidth',[
+                                                            'product'=>$product,
+                                                            'customerReviewCount'=>$customerReviewcount,
+                                                            'averagerating'=>$averagerating 
+
+                                                        ]);
         
     }
 }
