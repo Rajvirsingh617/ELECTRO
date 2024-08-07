@@ -21,56 +21,41 @@
         </div>
     </div>
     <!-- End breadcrumb -->
+
     <div class="container">
         <!-- Single Product Body -->
         <div class="mb-xl-14 mb-6">
             <div class="row">
                 <div class="col-md-5 mb-4 mb-md-0">
+                    <!-- Main Slider -->
                     <div id="sliderSyncingNav" class="js-slick-carousel u-slick mb-2"
                         data-infinite="true"
                         data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle"
                         data-arrow-left-classes="fas fa-arrow-left u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left ml-lg-2 ml-xl-4"
                         data-arrow-right-classes="fas fa-arrow-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-2 mr-xl-4"
                         data-nav-for="#sliderSyncingThumb">
-                        <div class="js-slide">
-                            <img class="img-fluid" src="/assets/img/720X660/laptop1.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide">
-                            <img class="img-fluid" src="/assets/img/720X660/laptop2.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide">
-                            <img class="img-fluid" src="/assets/img/720X660/laptop3.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide">
-                            <img class="img-fluid" src="/assets/img/720X660/laptop4.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide">
-                            <img class="img-fluid" src="/assets/img/720X660/laptop5.jpg" alt="Image Description">
-                        </div>
+                        @foreach($product_galleryimages as $image)
+                            <div class="js-slide">
+                                <img class="img-fluid" src="{{ $image->image_url }}" alt="Image Description">
+                            </div>
+                        @endforeach
                     </div>
 
+                    <!-- Thumbnails -->
                     <div id="sliderSyncingThumb" class="js-slick-carousel u-slick u-slick--slider-syncing u-slick--slider-syncing-size u-slick--gutters-1 u-slick--transform-off"
                         data-infinite="true"
                         data-slides-show="5"
                         data-is-thumbs="true"
                         data-nav-for="#sliderSyncingNav">
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="/assets/img/720X660/laptop1.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="/assets/img/720X660/laptop2.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="/assets/img/720X660/laptop3.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="/assets/img/720X660/laptop4.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="/assets/img/720X660/laptop5.jpg" alt="Image Description">
-                        </div>
+                        @foreach($product_galleryimages as $image)
+                            <div class="js-slide" style="cursor: pointer;">
+                                <img class="img-fluid" src="{{ $image->image_url }}" alt="Image Description">
+                            </div>
+                        @endforeach
                     </div>
                 </div>
+
+                <!-- Right-side product details -->
                 <div class="col-md-7 mb-md-6 mb-lg-0">
                     <div class="mb-2">
                         <div class="border-bottom mb-3 pb-md-1 pb-3">
@@ -78,30 +63,29 @@
                             <h2 class="font-size-25 text-lh-1dot2">{{$product->product_name}}</h2>
                             <div class="mb-2">
                                 <a class="d-inline-flex align-items-center small font-size-15 text-lh-1" href="#">
-                             
                                     <div class="text-warning mr-2">
-                                        @for ($i = 1; $i <=5;$i++)
-                                        @if ($i<=$averagerating)
-                                        <small class="fas fa-star"></small>
-                                        @else
-                                        <small class="far fa-star text-muted"></small>
-                                        @endif
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <= $averagerating)
+                                                <small class="fas fa-star"></small>
+                                            @else
+                                                <small class="far fa-star text-muted"></small>
+                                            @endif
                                         @endfor
                                     </div>
                                     <span class="text-secondary font-size-13">{{$customerReviewCount}}</span>
                                 </a>
                                 <div class="d-flex flex-wrap align-items-center">
-                                <div class="d-flex align-items-center mr-3">
-                                    Brand: <img class="img-fluid max-width-150 ml-2" width=80px src="{{$product->brand_logo }}" alt="Image Description">
-                                </div>
-                                <div class="d-flex align-items-center mr-3">
-                                    Seller: <span class="ml-2">seller01</span>
-                                </div>
-                                <div class="d-flex align-items-center text-gray-9 font-size-14">
-                                    Availability :<span class="text-green font-weight-bold ml-2">{{$product->qty_available}} in Stock</span>
+                                    <div class="d-flex align-items-center mr-3">
+                                        Brand: <img class="img-fluid max-width-150 ml-2" width="80" src="{{$product->brand_logo }}" alt="Image Description">
+                                    </div>
+                                    <div class="d-flex align-items-center mr-3">
+                                        Seller: <span class="ml-2">{{$product->seller_name}}</span>
+                                    </div>
+                                    <div class="d-flex align-items-center text-gray-9 font-size-14">
+                                        Availability: <span class="text-green font-weight-bold ml-2">{{$product->qty_available}} in Stock</span>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="flex-horizontal-center flex-wrap mb-4">
                             <a href="#" class="text-gray-6 font-size-13 mr-2"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
@@ -119,7 +103,7 @@
                         <p><strong>SKU</strong>: {{$product->sku}}</p>
                         <div class="mb-4">
                             <div class="d-flex align-items-baseline">
-                                <ins class="font-size-36 text-decoration-none"> ₹{{$product->sell_price}}</ins>
+                                <ins class="font-size-36 text-decoration-none">₹{{$product->sell_price}}</ins>
                                 <del class="font-size-20 ml-2 text-gray-6">₹{{$product->mrp}}</del>
                             </div>
                         </div>
@@ -164,9 +148,12 @@
                         </div>
                     </div>
                 </div>
+                <!-- End right-side product details -->
             </div>
         </div>
-        <!-- End Single Product Body -->
+    </div>
+</main>
+     <!-- End Single Product Body -->
         <!-- Single Product Tab -->
         <div class="mb-8">
             <div class="position-relative position-md-static px-md-6">

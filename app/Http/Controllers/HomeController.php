@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Models\Product;
 
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,7 +23,9 @@ class HomeController extends Controller
             $product=product::where('slug',$slug)
             ->join('categories','products.category_id','=','categories.category_id')
             ->join('brands','products.brand_id','=','brands.id')
-            ->select('products.*','categories.category_name','brands.brand_name','brands.brand_logo')
+            ->join('sellers','products.seller_id','=','sellers.id')
+            
+            ->select('products.*','categories.category_name','brands.brand_name','brands.brand_logo','sellers.seller_name')
             ->first();
             //dd($product->id);
             $customerReviewcount=DB::table('reviews')
@@ -32,13 +35,19 @@ class HomeController extends Controller
             $averagerating = DB::table('reviews')
             ->where('product_id',$product->id)
             ->avg('rating');
+
+            $product_galleryimages = Product::join('product_galleryimages','products.id','=','product_galleryimages.product_id')
+         ->get();
+            //dd($product_galleryimages);
             
             //dd($averagerating);
 
             return view('/shop/single-product-fullwidth',[
                                                             'product'=>$product,
                                                             'customerReviewCount'=>$customerReviewcount,
-                                                            'averagerating'=>$averagerating 
+                                                            'product_galleryimages'=>$product_galleryimages,
+                                                            'averagerating'=>$averagerating,
+                                                            
 
                                                         ]);
         
