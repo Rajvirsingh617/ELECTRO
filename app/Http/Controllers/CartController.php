@@ -27,7 +27,7 @@ class CartController extends Controller
             
         ]
         ];
-        $grandTotal=5200;
+        $grandTotal=collect ($cartDatas)->sum('total');
         return view("shop/cart",['cartDatas' => $cartDatas,
                                 'grandTotal'=>$grandTotal]);
     }
