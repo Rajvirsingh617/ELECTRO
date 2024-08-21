@@ -10,6 +10,7 @@ use App\Http\Controllers\CustomerAuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\SystemInfoController;
 use App\Http\Controllers\WishlistController;
@@ -31,8 +32,8 @@ Route::post('/login',[AuthController::class,'login'])->name('login');
 Route::prefix('/shop')->group(function () {
     Route::get('/shop-grid', [ProductFilterController::class, 'filter'])->name('shop-grid');
 
-    Route::get('/cart',function(){
-        return view('shop/cart');
+    Route::resource('/cart',CartController::class);
+        
     });
     Route::get('/checkout',function(){
         return view('shop/checkout'); //checkout.blade.php
@@ -106,7 +107,8 @@ Route::prefix('/shop')->group(function () {
 
     Route::resource('wishlist',WishlistController::class);
    
-});
+
+
 
 
 Route::get('/faq', function () {
