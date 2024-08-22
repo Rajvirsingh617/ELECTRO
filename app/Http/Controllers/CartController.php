@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -13,23 +16,32 @@ class CartController extends Controller
     public function index()
     {
         //
-        $cartDatas=[
-            'cartitem1'=>['product name'=>'Ultra Wireless S50 Headphones S50 with Bluetooth',
-            'unit_price'=>'100',
-            'qty'=>2,
-            'total'=>200,
-            
-        ],
-            'cartitem2'=>['product name'=>'Ultra Wireless S50',
-            'unit_price'=>'1000',
-            'qty'=>5,
-            'total'=>5000,
-            
-        ]
-        ];
-        $grandTotal=collect ($cartDatas)->sum('total');
-        return view("shop/cart",['cartDatas' => $cartDatas,
-                                'grandTotal'=>$grandTotal]);
+        $cartDatas2 = DB::table('carts')
+            ->join('users', 'users.id', '=', 'carts.customer_id')
+            ->join('products', 'products.id', '=', 'carts.product_id')
+            ->where('users.id', Auth::id()) 
+            ->get();
+
+        $cartDatas = [];
+
+        foreach ($cartDatas2 as $index => $item) {
+            $cartDatas["cartItem" . ($index + 1)] = [
+                'product_name' => $item->product_name,
+                'unit_price' => $item->sell_price,
+                'qty' => $item->qty,
+                'total' => $item->sell_price * $item->qty,
+            ];
+        }
+
+        //dd($cartDatas);
+        $grandTotal = collect($cartDatas)->sum('total');
+
+        //echo $grandTotal; // Output: 10200
+        //$grandTotal = 10200;
+        return view('shop/cart',[
+                                'cartDatas'=>$cartDatas,
+                                'grandTotal'=>$grandTotal
+                                ]);
     }
 
     /**

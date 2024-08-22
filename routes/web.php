@@ -14,6 +14,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\SystemInfoController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\CouponController;
 use App\Http\Middleware\AdminAuth;
 
 
@@ -106,6 +107,8 @@ Route::prefix('/shop')->group(function () {
     });
 
     Route::resource('wishlist',WishlistController::class);
+    Route::resource('coupons', CouponController::class);
+Route::post('coupons/apply', [CouponController::class, 'applyCoupon'])->name('coupons.apply');
    
 
 
@@ -133,6 +136,10 @@ Route::prefix('admin')->middleware(AdminAuth::class)->group(function () { // /ad
     Route::get('/dashboard', [AuthController::class,'dashboard'])->name('admin_dashboard');
 
     Route::resource('category', CategoryController::class);
+
+    // Routes in your web.php or api.php file
+
+
     Route::resource('brands', BrandController::class);
     Route::resource('products',ProductController::class);
     Route::resource('unit',UnitController::class);

@@ -83,7 +83,37 @@
                                 <div class="ml-md-3 text-gray-9 font-size-14">Availability: <span class="text-green font-weight-bold">{{$product->qty_available}} in stock</span></div>
                             </div>
                         </div>
-                        <div class="flex-horizontal-center flex-wrap mb-4">
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    toastMixin.fire({
+                                        animation: true,
+                                        icon: 'success',
+                                        title: '{{ session('success') }}'
+                                    });
+                                });
+                            </script>
+                        @endif
+
+                        @if (session('info'))
+                            <div class="alert alert-danger">
+                                {{ session('info') }}
+                            </div>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    toastMixin.fire({
+                                        animation: true,
+                                        icon: 'info',
+                                        title: '{{ session('info') }}'
+                                    });
+                                });
+                            </script>
+                        
+                @endif
+                        <div class="flex-horizontal-center flex-wrap mb-4"> 
                             
                             <form method="POST" action="{{route('wishlist.store')}}">
                                 @csrf

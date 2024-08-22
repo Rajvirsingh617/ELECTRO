@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -699,6 +700,7 @@
         <script src="/assets/js/zoom/panZoom.js"></script>
         <script src="/assets/js/zoom/ui-carousel.js"></script>
         <script src="/assets/js/zoom/zoom.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <script src="/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
         <script src="/assets/vendor/popper.js/dist/umd/popper.min.js"></script>
@@ -711,7 +713,6 @@
         <script src="/assets/vendor/svg-injector/dist/svg-injector.min.js"></script>
         <script src="/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="/assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-        <script src="/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
         <script src="/assets/vendor/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script src="/assets/vendor/typed.js/lib/typed.min.js"></script>
         <script src="/assets/vendor/slick-carousel/slick/slick.js"></script>
@@ -856,6 +857,70 @@
                 @endforeach
             });
         </script> --}}
+
+        <script>
+            /*  document
+             .querySelector('small.far.fa-star')
+             .addEventListener('click', function (e) {
+                 e.preventDefault();
+                 console.log('OKOKOKOKOKOKO');
+             }); */
+ 
+         </script>
+         <script>
+             var toastMixin = Swal.mixin({
+                 toast: true,
+                 icon: 'success',
+                 title: 'General Title',
+                 animation: false,
+                 position: 'top-right',
+                 showConfirmButton: false,
+                 timer: 3000,
+                 timerProgressBar: true,
+                 didOpen: (toast) => {
+                     toast.addEventListener('mouseenter', Swal.stopTimer)
+                     toast.addEventListener('mouseleave', Swal.resumeTimer)
+                 }
+             });
+             document.querySelector('.second.wishlistButton').addEventListener('click', function (e) {
+                 e.preventDefault(); //Stop reloading the page
+                 
+                 console.log("Wishlish clicked");
+                 //PHP code
+                 //I want to execute php code inside javscirpt
+                 @if (!auth()->check())
+                     event.preventDefault(); // Prevent form submission
+                     var loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {
+                         keyboard: false
+                     });
+                     loginModal.show(); // Show the modal
+                     document.querySelector('.modal-title').innerHTML=`Login`;
+                     let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                     let form = `<form method="POST" action="/customer/login">
+                                     <input type="hidden" name="_token" value="${csrfToken}">
+                                     <div class="mb-3">
+                                         <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                         <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                     </div>
+                                     <div class="mb-3">
+                                         <label for="exampleInputPassword1" class="form-label">Password</label>
+                                         <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                     </div>
+                                     <div class="mb-3 form-check">
+                                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                         <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                     </div>
+                                     <button type="submit" class="btn btn-primary">Submit</button>
+                                 </form>`;
+                     document.querySelector('.modal-body').innerHTML= form;
+                    
+                 @else
+                     document.querySelector('.wishlistForm').submit(); // Submit the form if logged in
+                 @endif
+ 
+             });
+         </script>
         
     </body>
 </html>

@@ -56,8 +56,8 @@ class WishlistController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
-        //dd('store');
+       //dd($request->all());
+        ///dd('store');
         $data = $request->only('product_id');
         $data['customer_id']=Auth::id();
         //dd($data);

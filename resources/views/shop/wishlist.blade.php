@@ -1,4 +1,3 @@
-
 @extends('layouts.common')
 
 @section('common_content')
