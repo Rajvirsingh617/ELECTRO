@@ -108,7 +108,9 @@ Route::prefix('/shop')->group(function () {
 
     Route::resource('wishlist',WishlistController::class);
     Route::resource('coupons', CouponController::class);
-Route::post('coupons/apply', [CouponController::class, 'applyCoupon'])->name('coupons.apply');
+    // Use POST method for applying coupons
+Route::post('/apply-coupon', [CouponController::class, 'apply'])->name('coupons.apply');
+
    
 
 

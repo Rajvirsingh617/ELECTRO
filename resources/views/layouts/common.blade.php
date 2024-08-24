@@ -6,8 +6,9 @@
         <title>Shop Grid | Amazon - Responsive Website Template</title>
 
         <!-- Required Meta Tags Always Come First -->
-        <meta charset="utf-8">  
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="csrf-token" content="{{ csrf_token() }}"> 
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="{{$appData['app_shortcut_icon_url']}}">
@@ -36,7 +37,29 @@
         <link rel="stylesheet" href="/assets/css/theme.css">
     </head>
 
-    <body>
+    
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 text-center" id="loginModalLabel">Modal title</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Modal Body Content -->
+                </div>
+                <div class="modal-footer">
+                    <a href='#' type="button" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
 
         <!-- ========== HEADER ========== -->
         @include('layouts.header')
@@ -693,8 +716,10 @@
         <!-- End Go to Top -->
 
         <!-- JS Global Compulsory -->
+        
         <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
         <script src="/assets/js/zoom/jquery-ui.min.js"></script>
+        
         <script src="/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
         <script src="/assets/js/zoom/jquery.elevatezoom.js"></script>
         <script src="/assets/js/zoom/panZoom.js"></script>
@@ -740,6 +765,7 @@
         <script src="/assets/js/components/hs.selectpicker.js"></script>
 
         <!-- JS Plugins Init. -->
+        
         <script>
             $(window).on('load', function () {
                 // initialization of HSMegaMenu component

@@ -1,3 +1,4 @@
+
 @extends('layouts.common')
 @section('common_content')
 <!-- ========== MAIN CONTENT ========== -->
@@ -34,7 +35,7 @@
 
                         @foreach($product_gallery_images as $index => $product_gallery_image)
                             <div class="js-slide" style="cursor: pointer;">
-                                <img id="zoom_{{$index}}" class="img-fluid" src=" {{$product_gallery_image->image_url}} " alt="Image Description">
+                                <img id="zoom_{{$index}}" class="img-fluid" src="{{$product_gallery_image->image_url}}" alt="Image Description">
                             </div>
                         @endforeach
                         
@@ -48,7 +49,7 @@
 
                         @foreach($product_gallery_images as $product_gallery_image)
                         <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src=" {{$product_gallery_image->image_url}} " alt="Image Description">
+                            <img class="img-fluid" src="{{$product_gallery_image->image_url}}" alt="Image Description">
                         </div>
                         @endforeach()
                         
@@ -78,11 +79,12 @@
                                 </a>
                             </div>
                             <div class="d-md-flex">
-                                <a href="#" class="max-width-150 ml-n2 mb-2 mb-md-0">Brand:- {{$product->brand_name}} <img class="img-fluid"  src="{{$product->brand_logo}}" alt="Image Description"></a>
+                                <a href="#" class="max-width-150 ml-n2 mb-2 mb-md-0">Brand:- {{$product->brand_name}} <img class="img-fluid" src="{{$product->brand_logo}}" alt="Image Description"></a>
                                 <a href="#" class="max-width-150 ml-n2 mb-2 mb-md-0">Seller:- {{$product->seller_name}}</a>
                                 <div class="ml-md-3 text-gray-9 font-size-14">Availability: <span class="text-green font-weight-bold">{{$product->qty_available}} in stock</span></div>
                             </div>
                         </div>
+
                         @if (session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
@@ -111,14 +113,14 @@
                                     });
                                 });
                             </script>
-                        
-                @endif
-                        <div class="flex-horizontal-center flex-wrap mb-4"> 
-                            
-                            <form method="POST" action="{{route('wishlist.store')}}">
+                        @endif
+
+                        <div class="flex-horizontal-center flex-wrap mb-4">
+
+                            <form class="wishlistForm" method="POST" action="{{route('wishlist.store')}}">
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{$product->id}}" />
-                                <button type="submit" class="btn text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</button>
+                                <button type="submit" class="btn text-gray-6 font-size-13 wishlistButton second"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</button>
                             </form>
                             
                             <a href="#" class="text-gray-6 font-size-13 ml-2"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>

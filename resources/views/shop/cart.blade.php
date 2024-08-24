@@ -111,17 +111,17 @@
 
                                         <!-- Coupon Apply Form -->
                                         <form method="POST" action="{{ route('coupons.apply') }}">
-                                        @csrf
-                                        <label class="sr-only" for="couponCodeInput">Coupon code</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="coupon_code" id="couponCodeInput" placeholder="Coupon code" aria-label="Coupon code" aria-describedby="applyCouponButton" required>
-                                            <div class="input-group-append">
-                                                <button class="btn btn-dark px-4" type="submit" id="applyCouponButton">
-                                                    <i class="fas fa-tags d-md-none"></i>
-                                                    <span class="d-none d-md-inline">Apply coupon</span>
-                                                </button>
+                                            @csrf
+                                            <label class="sr-only" for="couponCodeInput">Coupon code</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="coupon_code" id="couponCodeInput" placeholder="Coupon code" aria-label="Coupon code" aria-describedby="applyCouponButton" required>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-dark px-4" type="submit" id="applyCouponButton">
+                                                        <i class="fas fa-tags d-md-none"></i>
+                                                        <span class="d-none d-md-inline">Apply coupon</span>
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
                                         </form>
 
                                                 <!-- End Apply coupon Form -->

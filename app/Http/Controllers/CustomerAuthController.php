@@ -17,42 +17,33 @@ class CustomerAuthController extends Controller
 
     //3. Method can be many
     //
-    public function register(Request $request){
-        //dd($request->all());
-       $request->validate([
-                                'email' => 'required|email|unique:users',
-                                'password'=>'required|min:8'
-                           ]);
-
-        // User::
-        // classObject = new ClassName();
-        $userco = new User();
-        //Set the fields
-        // L = R
-        /* $userco->name = '';
-        $userco->surname = ''; */
-        $userco->name = $request->fname;
-        $userco->surname = $request->sname;
-        $userco->email = $request->email;
-        $userco->password = $request->password;
-
-        $result = $userco->save();
-        if($result){
-            //True
-            //user store ho gaya hai
-            return back()->with('success','You have registered successfully.');
-        }else{
-            //False
-            //user store nahi hua hai
-            //with() method will create session variable
-            return back()->with('failed','You have registered successfully.');
+    public function register(Request $request) {
+        // Validate the request
+        $request->validate([
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8',
+            'fname' => 'required|string|max:255',
+            'sname' => 'required|string|max:255',
+        ]);
+    
+        // Create a new user instance
+        $user = new User();
+        $user->name = $request->fname;
+        $user->surname = $request->sname;
+        $user->email = $request->email;
+        // Hash the password before saving
+        $user->password = bcrypt($request->password);
+    
+        // Save the user to the database
+        if ($user->save()) {
+            // Redirect back with success message
+            return back()->with('success', 'You have registered successfully.');
+        } else {
+            // Redirect back with error message
+            return back()->with('failed', 'Registration failed. Please try again.');
         }
-
-
-        //dd($request->all());
-        //Every function return somethig
-        return 'register ';
     }
+    
 
     // public function method(Formal Argument)
     public function login(Request $request){

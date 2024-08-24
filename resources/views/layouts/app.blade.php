@@ -18,6 +18,12 @@
             rel="stylesheet">
 
         <!-- CSS Implementing Plugins -->
+        <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+
+
         <link rel="stylesheet" href="/assets/vendor/font-awesome/css/fontawesome-all.min.css">
         <link rel="stylesheet" href="/assets/css/font-electro.css">
 
@@ -58,6 +64,7 @@
 
         <!-- JS Global Compulsory -->
         <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+        
         <script src="/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
         <script src="/assets/vendor/popper.js/dist/umd/popper.min.js"></script>
         <script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
