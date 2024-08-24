@@ -37,8 +37,26 @@ class CouponController extends Controller
         // Check if the current date is after the expire end date
         if ($currentDateTime->greaterThan($expireEndDate)) {
             return redirect()->back()->with('error', "The coupon code {$coupon->coupon_code} has expired.");
-        } else {
-            return redirect()->back()->with('success', "The coupon code {$coupon->coupon_code} is valid and can be applied.");
         }
+
+        // Calculate the discount
+        $discountAmount = 0;
+        $totalAmount = 100; // Example total amount before applying the coupon; replace with your actual value.
+
+        if ($coupon->coupon_type === 'percentage') {
+            $discountAmount = ($totalAmount * $coupon->coupon_value) / 100;
+            $discountMessage = "{$coupon->coupon_value}% discount applied. You saved ₹{$discountAmount}.";
+        } elseif ($coupon->coupon_type === 'fixed') {
+            $discountAmount = $coupon->coupon_value;
+            $discountMessage = "₹{$discountAmount} discount applied.";
+        } else {
+            return redirect()->back()->with('error', 'Invalid coupon type.');
+        }
+
+        // Log the discount applied
+        Log::info('Discount applied: ' . $discountAmount);
+
+        // Return back with success message
+        return redirect()->back()->with('success', "The coupon code {$coupon->coupon_code} is valid and can be applied. {$discountMessage}");
     }
 }

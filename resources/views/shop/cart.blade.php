@@ -159,6 +159,10 @@
                                             <a class="font-size-12 text-gray-90 text-decoration-on underline-on-hover font-weight-bold mb-3 d-inline-block" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 Calculate Shipping
                                             </a>
+                                            <tr class="cart-subtotal">
+                                                <th>Discount</th>
+                                                <td data-title="Subtotal"><span class="amount">-</span></td>
+                                            </tr>
                                             <div class="collapse mb-3" id="collapseExample">
                                                 <div class="form-group mb-4">
                                                     <select class="js-select selectpicker dropdown-select right-dropdown-0-all w-100"

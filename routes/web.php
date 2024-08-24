@@ -111,6 +111,10 @@ Route::prefix('/shop')->group(function () {
     // Use POST method for applying coupons
 Route::post('/apply-coupon', [CouponController::class, 'apply'])->name('coupons.apply');
 
+// In web.php
+Route::get('/shop/cart/{productId}', [CartController::class, 'showCart'])->name('cart.show');
+
+
    
 
 
