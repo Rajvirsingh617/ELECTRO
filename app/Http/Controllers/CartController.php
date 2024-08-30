@@ -28,6 +28,7 @@ class CartController extends Controller
         foreach ($cartDatas2 as $index => $item) {
             $cartDatas["cartItem" . ($index + 1)] = [
                 'product_name' => $item->product_name,
+                'product_id' => $item->product_id,
                 'unit_price' => $item->sell_price,
                 'qty' => $item->qty,
                 'total' => $item->sell_price * $item->qty,
@@ -91,6 +92,9 @@ class CartController extends Controller
     public function destroy(Cart $cart)
     {
         //
+        var_dump($cart->id);
+        dd('Cart Destroy');
+        $cart->delete();
     }
     
     

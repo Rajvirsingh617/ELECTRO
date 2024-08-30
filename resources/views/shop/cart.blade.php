@@ -43,14 +43,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($cartDatas as $cartData)                
+                          
+                            @foreach($cartDatas as $cartData)
+                            
                             <tr class="">
                                 <td class="text-center">
-                                    {{-- <form method="POST" action="/shop/cart/{{$cartData['product_id']}}" >
+                                    
+                                     <form method="POST" action="/shop/cart/{{$cartData['product_id']}}" >
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn text-gray-32 font-size-26">×</button>
-                                    </form> --}}
+                                       
+                                    </form> 
                                 </td>
                                 <td class="d-none d-md-table-cell">
                                     <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" src="/assets/img/300X300/img6.jpg" alt="Image Description"></a>

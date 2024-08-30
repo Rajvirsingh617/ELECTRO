@@ -85,46 +85,46 @@
                             </div>
                         </div>
 
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
+                                                {{-- Display alerts if any session messages are present --}}
+                            @if (session('success') || session('info') || session('error'))
+                            @php
+                                // Determine alert type and message content
+                                $alertType = session('success') ? 'success' : (session('info') ? 'info' : 'danger');
+                                $messageContent = session('success') ?? session('info') ?? session('error');
+                            @endphp
+
+                            <div class="alert alert-{{ $alertType }}">
+                                {{ $messageContent }}
                             </div>
+
+                            {{-- Script to trigger toast notification --}}
                             <script>
                                 document.addEventListener('DOMContentLoaded', function () {
                                     toastMixin.fire({
                                         animation: true,
-                                        icon: 'success',
-                                        title: '{{ session('success') }}'
+                                        icon: '{{ $alertType }}',
+                                        title: '{{ $messageContent }}'
                                     });
                                 });
                             </script>
-                        @endif
+                            @endif
 
-                        @if (session('info'))
-                            <div class="alert alert-danger">
-                                {{ session('info') }}
-                            </div>
-                            <script>
-                                document.addEventListener('DOMContentLoaded', function () {
-                                    toastMixin.fire({
-                                        animation: true,
-                                        icon: 'info',
-                                        title: '{{ session('info') }}'
-                                    });
-                                });
-                            </script>
-                        @endif
-
-                        <div class="flex-horizontal-center flex-wrap mb-4">
-
-                            <form class="wishlistForm" method="POST" action="{{route('wishlist.store')}}">
+                            <div class="flex-horizontal-center flex-wrap mb-4">
+                            {{-- Wishlist Form --}}
+                            <form class="wishlistForm" method="POST" action="{{ route('wishlist.store') }}">
                                 @csrf
-                                <input type="hidden" name="product_id" value="{{$product->id}}" />
-                                <button type="submit" class="btn text-gray-6 font-size-13 wishlistButton second"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</button>
+                                <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                                <button type="submit" class="btn text-gray-6 font-size-13 wishlistButton second">
+                                    <i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist
+                                </button>
                             </form>
-                            
-                            <a href="#" class="text-gray-6 font-size-13 ml-2"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                        </div>
+
+                            {{-- Compare Link --}}
+                            <a href="#" class="text-gray-6 font-size-13 ml-2">
+                                <i class="ec ec-compare mr-1 font-size-15"></i> Compare
+                            </a>
+                            </div>
+
                        
                         {!!$product->product_desc!!}
                         

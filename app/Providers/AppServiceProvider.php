@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
-
-use App\Models\Category;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\SystemInfo;
+use App\Models\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -50,6 +51,22 @@ class AppServiceProvider extends ServiceProvider
         // Retrieve categories
         $categories = Category::whereNotNull('rank')->orderBy('rank', 'asc')->get();
 
+        // Calculate the grand total for the authenticated user's cart
+        $grandTotal = 0;
+
+        if (Auth::check()) { // Check if user is authenticated
+            $cartItems = DB::table('carts')
+                ->join('products', 'products.id', '=', 'carts.product_id')
+                ->where('carts.customer_id', Auth::id()) 
+                ->select('products.sell_price', 'carts.qty')
+                ->get();
+
+            // Calculate grand total
+            foreach ($cartItems as $item) {
+                $grandTotal += $item->sell_price * $item->qty;
+            }
+        }
+
         // Prepare data array
         $data = [
             'app_name' => $app_name,
@@ -69,8 +86,8 @@ class AppServiceProvider extends ServiceProvider
             'categories' => $categories
         ];
 
-        // Share data with views
+        // Share data with all views
         View::share('appData', $data);
+        View::share('grandTotal', $grandTotal); // Share grandTotal with all views
     }
 }
-

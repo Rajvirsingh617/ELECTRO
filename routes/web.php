@@ -34,8 +34,12 @@ Route::prefix('/shop')->group(function () {
     Route::get('/shop-grid', [ProductFilterController::class, 'filter'])->name('shop-grid');
 
     Route::resource('/cart',CartController::class);
+
+    Route::resource('wishlist',WishlistController::class);
         
     });
+    
+
     Route::get('/checkout',function(){
         return view('shop/checkout'); //checkout.blade.php
     });
@@ -106,7 +110,7 @@ Route::prefix('/shop')->group(function () {
         return view('shop/track-your-order'); //track-your-order.blade.php
     });
 
-    Route::resource('wishlist',WishlistController::class);
+    
     Route::resource('coupons', CouponController::class);
     // Use POST method for applying coupons
 Route::post('/apply-coupon', [CouponController::class, 'apply'])->name('coupons.apply');

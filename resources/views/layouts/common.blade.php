@@ -908,45 +908,45 @@
                      toast.addEventListener('mouseleave', Swal.resumeTimer)
                  }
              });
-             document.querySelector('.second.wishlistButton').addEventListener('click', function (e) {
-                 e.preventDefault(); //Stop reloading the page
-                 
-                 console.log("Wishlish clicked");
-                 //PHP code
-                 //I want to execute php code inside javscirpt
-                 @if (!auth()->check())
-                     event.preventDefault(); // Prevent form submission
-                     var loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {
-                         keyboard: false
-                     });
-                     loginModal.show(); // Show the modal
-                     document.querySelector('.modal-title').innerHTML=`Login`;
-                     let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                     let form = `<form method="POST" action="/customer/login">
-                                     <input type="hidden" name="_token" value="${csrfToken}">
-                                     <div class="mb-3">
-                                         <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                         <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                                     </div>
-                                     <div class="mb-3">
-                                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                                         <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-                                     </div>
-                                     <div class="mb-3 form-check">
-                                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                         <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                     </div>
-                                     <button type="submit" class="btn btn-primary">Submit</button>
-                                 </form>`;
-                     document.querySelector('.modal-body').innerHTML= form;
-                    
-                 @else
-                     document.querySelector('.wishlistForm').submit(); // Submit the form if logged in
-                 @endif
- 
-             });
-         </script>
+             document.querySelectorAll('.second.wishlistButton').forEach(function(button) {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        console.log("Wishlist clicked");
+
+        if (!isAuthenticated) {
+            // Show the login modal
+            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {
+                keyboard: false
+            });
+            loginModal.show();
+            document.querySelector('.modal-title').innerHTML = `Login`;
+
+            let form = `<form method="POST" action="${loginUrl}">
+                            <input type="hidden" name="_token" value="${csrfToken}">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>`;
+            document.querySelector('.modal-body').innerHTML = form;
+        } else {
+            // Submit the wishlist form
+            document.querySelector('.wishlistForm').submit();
+        }
+    });
+});
+
         
     </body>
 </html>
