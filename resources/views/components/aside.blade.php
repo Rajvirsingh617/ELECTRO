@@ -1,4 +1,3 @@
-<!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('admin_dashboard')}}" class="brand-link">
@@ -34,6 +33,20 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Only show this menu item if the user is customercare -->
+                @if(auth()->user()->role == 'customercare')
+                <li class="nav-item">
+                    <a href="{{ route('chatforcustomer.store') }}" class="nav-link">
+                        <i class="nav-icon far fa-message"></i>
+                        <p>
+                            Chat
+                            <span class="badge badge-info right">2</span>
+                        </p>
+                    </a>
+                </li>
+                @endif
+
+                <!-- Other menu items -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-circle"></i>
@@ -88,7 +101,6 @@
                 </li>
             </ul>
         </nav>
-
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

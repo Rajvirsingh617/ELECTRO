@@ -59,7 +59,25 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $data = $request->only('product_id','qty');
+        $data['customer_id'] = Auth::id();
+
+         // Check if the product is already in the cart for the current customer
+        $existingCart = Cart::where('customer_id', $data['customer_id'])
+                            ->where('product_id', $data['product_id'])
+                            ->first();
+
+        if ($existingCart) {
+            // If the product already exists, update the quantity
+            $existingCart->qty += $data['qty'];
+            $existingCart->save();
+        } else {
+            // If the product does not exist in the cart, create a new entry
+            Cart::create($data);
+        }
+        // Redirect back with a success message
+        return back()->with('success', 'Product added to Cart successfully!');
     }
 
     /**

@@ -50,24 +50,9 @@ class AppServiceProvider extends ServiceProvider
 
         // Retrieve categories
         $categories = Category::whereNotNull('rank')->orderBy('rank', 'asc')->get();
+        
 
-        // Calculate the grand total for the authenticated user's cart
-        $grandTotal = 0;
-
-        if (Auth::check()) { // Check if user is authenticated
-            $cartItems = DB::table('carts')
-                ->join('products', 'products.id', '=', 'carts.product_id')
-                ->where('carts.customer_id', Auth::id()) 
-                ->select('products.sell_price', 'carts.qty')
-                ->get();
-
-            // Calculate grand total
-            foreach ($cartItems as $item) {
-                $grandTotal += $item->sell_price * $item->qty;
-            }
-        }
-
-        // Prepare data array
+        // Prepare data array without grandTotal
         $data = [
             'app_name' => $app_name,
             'app_description' => $app_description,
@@ -88,6 +73,5 @@ class AppServiceProvider extends ServiceProvider
 
         // Share data with all views
         View::share('appData', $data);
-        View::share('grandTotal', $grandTotal); // Share grandTotal with all views
     }
 }

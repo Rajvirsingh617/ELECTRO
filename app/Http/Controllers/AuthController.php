@@ -37,6 +37,28 @@ class AuthController
                                       ]);
                                       
     }
+    public function cc_dashboard(){
+        // Categories
+        $categories = \App\Models\Category::all();
+        // Brands
+        $brands = \App\Models\Brand::all();
+        // Units
+        $units = \App\Models\Unit::all();
+        // Products
+        $products = \App\Models\Product::all();
+
+        // Categories
+        // Brands
+        // Units
+        // Products
+        return view('customercare.dashboard',[
+                                            'categories'=>count($categories),
+                                            'brands'=>count($brands),
+                                            'units'=>count($units),
+                                            'products'=>count($products)
+                                      ]);
+                                      
+    }
     //We can give any name of the class object
     public function login(Request $request){
         //Serverside validation
@@ -58,7 +80,7 @@ class AuthController
             if (Auth::attempt($credentials)) {
                 session(['firstname' => $user->name]);//Associative array ['key'=>'value']
                 session(['lastname' => $user->surname]);
-                return redirect('/admin/dashboard');
+                return redirect('/'.$user->role.'/dashboard');
             }else{
                 //False
                 //Empty Invalid credentials

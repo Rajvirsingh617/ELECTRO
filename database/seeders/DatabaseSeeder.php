@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\SystemInfo;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash; // Add this line
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,40 +18,40 @@ class DatabaseSeeder extends Seeder
 
         User::insert([
             [
-                'name' => 'Abhishek',
-                'surname' => 'Bairagi',
+                'name' => 'rajvir',
+                'surname' => 'singh',
                 'email' => 'admin1@gmail.com',
-                'password' => 'admin1@gmail.com',
+                'password' => Hash::make('admin1@gmail.com'), // Hash the password
                 'role' => 'admin',
             ],
             [
-                'name' => 'a1',
+                'name' => 'customercare',
+                'surname' => 'a1',
+                'email' => 'customercare@gmail.com',
+                'password' => Hash::make('customercare@gmail.com'), // Hash the password
+                'role' => 'customercare',
+            ],
+            [
+                'name' => 'customer1',
                 'surname' => 'a1',
                 'email' => 'customer1@gmail.com',
-                'password' => 'customer1@gmail.com',
+                'password' => Hash::make('customer1@gmail.com'), // Hash the password
                 'role' => 'customer',
             ],
             [
-                'name' => 'a2',
+                'name' => 'customer2',
                 'surname' => 'a2',
                 'email' => 'customer2@gmail.com',
-                'password' => 'customer2@gmail.com',
-                'role' => 'customer',
-            ],
-            [
-                'name' => 'a3',
-                'surname' => 'a3',
-                'email' => 'customer3@gmail.com',
-                'password' => 'customer3@gmail.com',
+                'password' => Hash::make('customer2@gmail.com'), // Hash the password
                 'role' => 'customer',
             ],
         ]);
 
         // Create system info records using createMany
-        SystemInfo::factory()->createMany([
+         SystemInfo::factory()->createMany([
             [
                 'meta_name' => 'app_name',
-                'meta_value' => 'Amazon',
+                'meta_value' => 'One piece',
             ],
             [
                 'meta_name' => 'app_version',
@@ -59,8 +59,8 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'meta_name' => 'app_logo',
-                'meta_value' => 'https://pngimg.com/uploads/amazon/amazon_PNG1.png',
+                'meta_value' => '',
             ],
-        ]);
+        ]); 
     }
 }

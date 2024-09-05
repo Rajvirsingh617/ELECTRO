@@ -6,9 +6,9 @@
         <title>Shop Grid | Amazon - Responsive Website Template</title>
 
         <!-- Required Meta Tags Always Come First -->
-        <meta charset="utf-8">
+        <meta charset="utf-8">  
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="csrf-token" content="{{ csrf_token() }}"> 
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="{{$appData['app_shortcut_icon_url']}}">
@@ -37,29 +37,28 @@
         <link rel="stylesheet" href="/assets/css/theme.css">
     </head>
 
-    
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-center" id="loginModalLabel">Modal title</h1>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Modal Body Content -->
-                </div>
-                <div class="modal-footer">
-                    <a href='#' type="button" class="btn btn-secondary" data-dismiss="modal">Close</a>
-                  
+    <body>
+
+        <!-- Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 text-center" id="loginModalLabel">Modal title</h1>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Modal Body Content -->
+                    </div>
+                    <div class="modal-footer">
+                        <a href type="button" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    
-    
 
         <!-- ========== HEADER ========== -->
         @include('layouts.header')
@@ -716,10 +715,8 @@
         <!-- End Go to Top -->
 
         <!-- JS Global Compulsory -->
-        
         <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
         <script src="/assets/js/zoom/jquery-ui.min.js"></script>
-        
         <script src="/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
         <script src="/assets/js/zoom/jquery.elevatezoom.js"></script>
         <script src="/assets/js/zoom/panZoom.js"></script>
@@ -765,7 +762,6 @@
         <script src="/assets/js/components/hs.selectpicker.js"></script>
 
         <!-- JS Plugins Init. -->
-        
         <script>
             $(window).on('load', function () {
                 // initialization of HSMegaMenu component
@@ -893,60 +889,61 @@
              }); */
  
          </script>
+         
          <script>
-             var toastMixin = Swal.mixin({
-                 toast: true,
-                 icon: 'success',
-                 title: 'General Title',
-                 animation: false,
-                 position: 'top-right',
-                 showConfirmButton: false,
-                 timer: 3000,
-                 timerProgressBar: true,
-                 didOpen: (toast) => {
-                     toast.addEventListener('mouseenter', Swal.stopTimer)
-                     toast.addEventListener('mouseleave', Swal.resumeTimer)
-                 }
-             });
-             document.querySelectorAll('.second.wishlistButton').forEach(function(button) {
-    button.addEventListener('click', function(e) {
-        e.preventDefault();
-
-        console.log("Wishlist clicked");
-
-        if (!isAuthenticated) {
-            // Show the login modal
-            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {
-                keyboard: false
+            var toastMixin = Swal.mixin({
+                toast: true,
+                icon: 'success',
+                title: 'General Title',
+                animation: false,
+                position: 'top-right',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
             });
-            loginModal.show();
-            document.querySelector('.modal-title').innerHTML = `Login`;
+            document.querySelector('.second.wishlistButton').addEventListener('click', function (e) {
+                e.preventDefault(); //Stop reloading the page
+                
+                console.log("Wishlish clicked");
+                //PHP code
+                //I want to execute php code inside javscirpt
+                @if (!auth()->check())
+                    event.preventDefault(); // Prevent form submission
+                    var loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {
+                        keyboard: false
+                    });
+                    loginModal.show(); // Show the modal
+                    document.querySelector('.modal-title').innerHTML=`Login`;
+                    let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                    let form = `<form method="POST" action="/customer/login">
+                                    <input type="hidden" name="_token" value="${csrfToken}">
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>`;
+                    document.querySelector('.modal-body').innerHTML= form;
+                   
+                @else
+                    document.querySelector('.wishlistForm').submit(); // Submit the form if logged in
+                @endif
 
-            let form = `<form method="POST" action="${loginUrl}">
-                            <input type="hidden" name="_token" value="${csrfToken}">
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>`;
-            document.querySelector('.modal-body').innerHTML = form;
-        } else {
-            // Submit the wishlist form
-            document.querySelector('.wishlistForm').submit();
-        }
-    });
-});
-
+            });
+        </script>
         
     </body>
 </html>

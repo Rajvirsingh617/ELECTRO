@@ -50,11 +50,11 @@
                                                 @else
                                                     &#45;
                                                     &#x2D;          
-                                                    -
+                                                    
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-outline-info rounded-circle">
+                                                <a href="#"  class="btn btn-outline-info rounded-circle">
                                                     <i class="fa-regular fa-pen-to-square"></i>
                                                 </a>
                                                 <form method="POST" action="{{ route('category.destroy', ['category' => $category->category_id]) }}">

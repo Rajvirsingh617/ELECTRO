@@ -17,20 +17,30 @@
   <!-- Custom CSS for background image -->
   <style>
     body.login-page {
-      background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20231229/pngtree-computer-themed-circuit-board-vector-background-with-electronic-elements-a-motherboard-image_13888129.png');
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ8uP4Cjo0w-fEPOzmC6KIeO7EPRatL0jjaA&s');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
-      
+    .welcome-heading {
+    font-weight: bold;
+    font-size: 36px; /* Adjust the font size as needed */
+    color: #333; /* Change the color to your desired value */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow effect */
+    font-family: 'Arial', sans-serif; /* Customize the font family */
+    text-align: center; /* Center align the text */
+    margin-top: 20px; /* Add some spacing at the top */
+}
+
   </style>
 
 </head>
+<h1 style="font-weight: bold; font-size: 36px; color: #333; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);">WELCOME</h1>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
     <a href="/index2.html">
-    <img width="120" src="{{$appData['app_logo']}}" />
+    <img width="220" src="{{$appData['app_logo']}}" />
     </a>
       
   </div>

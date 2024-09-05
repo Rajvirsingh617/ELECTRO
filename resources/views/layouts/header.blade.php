@@ -95,7 +95,7 @@
                         <nav class="navbar navbar-expand u-header__navbar py-0 justify-content-xl-between max-width-270 min-width-270">
                             <!-- Logo -->
                             <a class="order-1 order-xl-0 navbar-brand u-header__navbar-brand u-header__navbar-brand-center" href="/" aria-label="Electro">
-                                <img src="{{$appData['app_logo']}}" />
+                                <img src="{{$appData['app_logo']}}"  style="width: 210px; height: auto;" />
                             </a>
                             <!-- End Logo -->
 
@@ -1098,7 +1098,7 @@
                                     <a href="/shop/cart" class="text-gray-90 position-relative d-flex " data-toggle="tooltip" data-placement="top" title="Cart">
                                         <i class="font-size-22 ec ec-shopping-bag"></i>
                                         <span class="width-22 height-22 bg-dark position-absolute flex-content-center text-white rounded-circle left-12 top-8 font-weight-bold font-size-12">2</span>
-                                        <span class="font-weight-bold font-size-16 text-gray-90 ml-3">${{$grandTotal}}</span>
+                                        <span class="font-weight-bold font-size-16 text-gray-90 ml-3" > $</span>
                                     </a>
                                 </li>
                             </ul>
