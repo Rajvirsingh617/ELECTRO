@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Create system info records using createMany
-         SystemInfo::factory()->createMany([
+        /*  SystemInfo::factory()->createMany([
             [
                 'meta_name' => 'app_name',
                 'meta_value' => 'One piece',
@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
             [
                 'meta_name' => 'app_logo',
                 'meta_value' => '',
-            ],
-        ]); 
+            ], */
+       /*  ]);  */
     }
 }

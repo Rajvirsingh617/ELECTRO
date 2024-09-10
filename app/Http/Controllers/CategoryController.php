@@ -23,7 +23,7 @@ class CategoryController extends Controller
         //2. Eloquent ORM (object returned mapper)
                   // ClassName::method
         $categories = Category::all();
-        // dd($categories);
+        //dd($categories);
             
         // Then pass the category to view
 
@@ -71,7 +71,8 @@ class CategoryController extends Controller
         Category::create($data);
 
         return back()->with('success', 'category created successfully');
-        return redirect('/admin/category/create');
+
+        //return redirect('/admin/category/create');
         //dd($request->all());
 
         //I want to store incomming data to categories table
@@ -79,7 +80,7 @@ class CategoryController extends Controller
         //1. QueryBUilder
         //2 Eleqoent ORM (Best Way) // 
         // Model file
-        return 'store';
+        //return 'store';
      }
     }
 

@@ -64,6 +64,19 @@ class ChatController extends Controller
     }
 
     public function chat(){
-        return view('chat'); //chat.blade.php
+        $chatDatas = [  // Associative array
+            [
+                "sender"=>'customercare',
+                "msg"=>"Can you share your model no",
+                "time"=>"2024-09-05 09:50:00"
+            ],
+            [
+                "sender"=>'customer',
+                "msg"=>"ACERT509850",
+                "time"=>"2024-09-05 09:50:05",
+            ]        
+        ];
+        return view('chat',['chatDatas'=>$chatDatas]); //chat.blade.php
     }
+    
 }
